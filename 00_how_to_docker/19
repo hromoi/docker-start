@@ -1,0 +1,4 @@
+docker run -dit --name Abathur -p 3000:3000 --mount type=bind,src=/Users/yperra-f,dst=/root python:2-slim
+docker exec Abathur pip install flask
+#предварительно создать папку flask на хосте в директории которую монтируешь в контейнер
+docker exec -w /root/flask -e HOST_HELLO=`docker inspect --format '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' Abathur` -d Abathur flask run --host=$HOST_HELLO --port=3000

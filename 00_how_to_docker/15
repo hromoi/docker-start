@@ -1,0 +1,1 @@
+docker run -d --name roach-warden -p 8081:80 -e PMA_HOST=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' spawning-pool):3306 phpmyadmin/phpmyadmin
